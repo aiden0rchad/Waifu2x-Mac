@@ -1,0 +1,37 @@
+:root {
+  --vp-c-brand-1: #006d7d;
+  --vp-c-brand-2: #087e8b;
+  --vp-c-brand-3: #006d7d;
+  --vp-c-brand-soft: #b6e9eb55;
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: linear-gradient(115deg, #087381, #2454a8);
+  --vp-home-hero-image-background-image: radial-gradient(#58e2e1aa, #58e2e100 68%);
+  --vp-home-hero-image-filter: blur(35px);
+}
+
+.dark {
+  --vp-c-bg: #111820;
+  --vp-c-bg-alt: #151f28;
+  --vp-c-bg-soft: #1b2933;
+  --vp-c-brand-1: #7ce4e2;
+  --vp-c-brand-2: #a6eeec;
+  --vp-c-brand-3: #66cecf;
+  --vp-c-brand-soft: #7ce4e222;
+  --vp-home-hero-name-background: linear-gradient(115deg, #91f6e9, #8baeff);
+  --vp-button-brand-text: #102125;
+  --vp-button-brand-bg: #7ce4e2;
+  --vp-button-brand-hover-text: #102125;
+  --vp-button-brand-hover-bg: #a6eeec;
+  --vp-button-brand-active-text: #102125;
+  --vp-button-brand-active-bg: #66cecf;
+}
+
+.VPHero .name, .VPHero .text { letter-spacing: -.045em; }
+.VPFeature { border: 1px solid var(--vp-c-divider); }
+.vp-doc img { border-radius: 12px; }
+.vp-doc .home-preview img { border: 1px solid var(--vp-c-divider); }
+.home-preview { margin: 64px auto 0; max-width: 980px; }
+.home-preview figcaption { margin-top: 12px; text-align: center; color: var(--vp-c-text-2); }
+@media (min-width: 960px) {
+  .VPHero .image-src { max-width: 288px; max-height: 288px; }
+}

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="340" viewBox="0 0 1200 340" role="img" aria-labelledby="title desc">
+  <title id="title">Waifu2x-Mac</title>
+  <desc id="desc">Artwork showing a small pink moon over mountains enlarged into a bigger frame</desc>
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#111b33"/><stop offset="1" stop-color="#124954"/></linearGradient>
+    <linearGradient id="sky" x2="0" y2="1"><stop stop-color="#364e88"/><stop offset="1" stop-color="#75518b"/></linearGradient>
+    <symbol id="scene" viewBox="0 0 240 140">
+      <rect width="240" height="140" fill="url(#sky)"/>
+      <circle cx="156" cy="49" r="31" fill="#fa94c7"/>
+      <path fill="#3b5280" d="M0 107l46-54 32 34 38-29 42 43 37-23 45 26v36H0z"/>
+      <path fill="#183c57" d="M0 120l46-24 28 15 43-24 50 25 44-15 29 13v30H0z"/>
+      <path stroke="#b1fcf0" stroke-width="2" d="M29 25h12m-6-6v12m153-8h10m-5-5v10"/>
+    </symbol>
+  </defs>
+  <rect width="1200" height="340" rx="28" fill="url(#bg)"/>
+  <path d="M706 40h394m-394 260h394" stroke="#7ce4e2" opacity=".26"/>
+  <rect x="56" y="55" width="187" height="38" rx="19" fill="#183648" stroke="#5097a4"/>
+  <text x="149.5" y="80" fill="#aaf5ed" text-anchor="middle" font-family="system-ui,sans-serif" font-size="17" font-weight="650" letter-spacing="2">APPLE SILICON</text>
+  <text x="53" y="177" fill="#f6f9ff" font-family="system-ui,sans-serif" font-size="77" font-weight="750" letter-spacing="-4">Waifu2x-Mac</text>
+  <text x="57" y="227" fill="#b9dce4" font-family="system-ui,sans-serif" font-size="29">Upscale images, GIFs, and video.</text>
+  <text x="57" y="282" fill="#86e2dd" font-family="system-ui,sans-serif" font-size="18" font-weight="650" letter-spacing="2">v1.0.1  /  SOURCE PREVIEW</text>
+  <rect x="840" y="62" width="302" height="194" rx="15" fill="#7ce4e2"/>
+  <use href="#scene" x="850" y="72" width="282" height="174"/>
+  <rect x="673" y="173" width="175" height="115" rx="12" fill="#d2fcf8"/>
+  <use href="#scene" x="680" y="180" width="161" height="101"/>
+  <path d="M872 281c80 8 148 0 190-16m-21-4 22 4-15 14" fill="none" stroke="#d2fcf8" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
