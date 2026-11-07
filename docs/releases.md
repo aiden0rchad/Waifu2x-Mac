@@ -2,7 +2,15 @@
 
 ## Native 2.8.0
 
-These docs describe the Swift rebuild with the **Files**, **Engine**, **Adjust**, and **Export** toolbar. This build is available from the native source checkout. See [What changed in 2.8.0](release-2.8.0.md) and [Build and first run](getting-started.md).
+The Swift rebuild puts **Files**, **Engine**, **Adjust**, and **Export** in the toolbar. [What changed in 2.8.0](release-2.8.0.md) · [GitHub release](https://github.com/aiden0rchad/Waifu2x-Mac/releases/tag/v2.8.0)
+
+| Download | What you get |
+| --- | --- |
+| [macOS arm64 app](https://github.com/aiden0rchad/Waifu2x-Mac/releases/download/v2.8.0/Waifu2x-Mac-2.8.0-macos-arm64.zip) | Ad-hoc-signed app with bundled Core ML models |
+| [Source archive](https://github.com/aiden0rchad/Waifu2x-Mac/releases/download/v2.8.0/Waifu2x-Mac-2.8.0-source.zip) | Matching Swift source, model files, and documentation |
+| [SHA256SUMS.txt](https://github.com/aiden0rchad/Waifu2x-Mac/releases/download/v2.8.0/SHA256SUMS.txt) | SHA-256 checksums for both ZIP files |
+
+Download both ZIPs and the checksum file into the same directory to verify them with `shasum -a 256 -c SHA256SUMS.txt`. [First launch and build instructions](getting-started.md)
 
 | Component | Status |
 | --- | --- |
@@ -10,7 +18,7 @@ These docs describe the Swift rebuild with the **Files**, **Engine**, **Adjust**
 | Bundled engines | Core ML and macOS frameworks. Model files ship with the local app. |
 | Apple ML and Apple VideoToolbox | macOS 26 or later on supported hardware. |
 | FLUX.2 klein Restore | Optional download for Apple Silicon with at least 16 GB of memory. [Requirements](optional-engines.md#install-or-remove) |
-| Local app bundle | arm64, ad-hoc signed for local use. [Packaging](packaging.md) |
+| App ZIP | arm64, ad-hoc signed. Apple notarization is unavailable for this build. [Packaging](packaging.md) |
 
 The screenshots and a demo batch were verified on Apple Silicon with macOS 26.5.1. The 16 GB figure is the optional engine’s minimum; actual memory use and speed depend on the image or clip.
 

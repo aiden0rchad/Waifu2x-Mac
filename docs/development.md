@@ -11,7 +11,9 @@ scripts/build-app.sh debug
 open dist/Waifu2x-Mac.app
 ```
 
-The normal suite exercises dimensions and file naming, model rendering and tile blending, image transparency, GIF timing and loops, video orientation and audio, motion interpolation, and optional engine installation with local fixtures. The real FLUX tests are opt-in and use a developer’s installed runtime and test fixtures. The app’s standard build and test commands use the checked-in Core ML packages. [Rebuilding model packages](models.md)
+The normal suite exercises dimensions and file naming, model rendering and tile blending, image transparency, GIF timing and loops, video orientation and audio, motion interpolation, and optional engine installation with local fixtures. The app’s standard build and test commands use the checked-in Core ML packages. [Rebuilding model packages](models.md)
+
+After installing FLUX in the app, use `W2X_FLUX_TEST=1 swift test` to include the two tests that run against the installed model and runtime.
 
 For a UI change, try one PNG or JPEG, one animated GIF, and one short video. Check the **Files** card metadata, engine selection, Fit and Actual Pixels, and the **Export** results. If the change touches AI Restore, verify both the base preview and an explicitly generated **Preview AI**.
 

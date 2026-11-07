@@ -8,13 +8,13 @@
 An on-device upscaler for Apple Silicon Macs.
 
 [![Platform](https://img.shields.io/badge/macOS-Apple_Silicon-129BA3)](docs/getting-started.md)
-[![Native version 2.8.0](https://img.shields.io/badge/native-v2.8.0-7459DE)](docs/release-2.8.0.md)
+[![Release v2.8.0](https://img.shields.io/badge/release-v2.8.0-7459DE)](https://github.com/aiden0rchad/Waifu2x-Mac/releases/tag/v2.8.0)
 [![Docs](https://img.shields.io/badge/docs-setup_%26_walkthrough-169EAF)](docs/index.md)
 [![Documentation build](https://github.com/aiden0rchad/Waifu2x-Mac/actions/workflows/docs.yml/badge.svg?branch=main)](https://github.com/aiden0rchad/Waifu2x-Mac/actions/workflows/docs.yml)
 [![AGPL 3.0](https://img.shields.io/badge/license-AGPL--3.0-79DAC8)](LICENSE)
 [![Buy Me a Coffee](https://img.shields.io/badge/Support-Buy%20Me%20a%20Coffee-FFDD00?style=flat&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/aiden0rchad)
 
-**[Build Waifu2x-Mac 2.8.0](docs/getting-started.md)**
+**[Download Waifu2x-Mac 2.8.0](https://github.com/aiden0rchad/Waifu2x-Mac/releases/download/v2.8.0/Waifu2x-Mac-2.8.0-macos-arm64.zip)**
 
 [Get started](docs/start-here.md) · [Walkthrough](docs/walkthrough.md) · [Engines](docs/engines.md) · [Troubleshooting](docs/troubleshooting.md) · [Changelog](CHANGELOG.md)
 
@@ -39,7 +39,7 @@ The bundled engines work offline. FLUX downloads once and runs on your Mac after
 
 ## Get it running
 
-The native **2.8.0** build targets Apple Silicon and macOS 15 or later. Build it from the Swift source checkout with Xcode and the macOS 26 SDK. The [build guide](docs/getting-started.md) covers the first launch, and [Builds & platform status](docs/releases.md) links to the published 1.0.1 source preview and explains which instructions apply to each build.
+The native **2.8.0** build targets Apple Silicon and macOS 15 or later. The release includes an ad-hoc-signed app ZIP and a source archive. Build from source with Xcode and the macOS 26 SDK. [First launch and build instructions](docs/getting-started.md) · [Downloads and platform status](docs/releases.md)
 
 1. Drag in one PNG or JPEG or click **Choose Files…**.
 2. Open **Engine** and select **Real-CUGAN** for the [sample illustration](docs/walkthrough.md).
