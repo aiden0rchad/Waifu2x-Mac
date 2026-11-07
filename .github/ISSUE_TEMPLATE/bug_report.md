@@ -13,8 +13,8 @@ labels: bug
 - Waifu2x-Mac version or commit
 - macOS version and Apple chip
 - Input format and dimensions
-- Engine, model, scale or target, and motion settings
-- Settings → Run engine check result
+- Engine, output size, and motion or AI settings
+- Exact error text, if available via Export → right-click the failed row → Copy Error
 
 ## Logs or screenshots
 

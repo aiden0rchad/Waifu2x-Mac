@@ -1,9 +1,7 @@
 # Waifu2x-Mac notices
 
-Waifu2x-Mac is a modified macOS port of Waifu2x-Extension-GUI, copyright Aaron Feng. The changes include Qt 6 and macOS support, the MetalFX helper, a guided interface, and macOS packaging and data migration.
+The native Swift application is licensed under the GNU Affero General Public License, version 3. [App license](LICENSE)
 
-Original contributions to Waifu2x-Mac are licensed under the GNU Affero General Public License, version 3. The full license text is in [LICENSE](LICENSE).
+Bundled models retain the upstream terms and attribution listed in the files under `Sources/UpscaleCore/Models/`. The same notices are included beside the models in the assembled app. [Bundled model provenance](docs/models.md)
 
-Inherited material retains its upstream notices. Many source headers specify AGPL version 3 or later, while the upstream repository license specifies personal use. Both are preserved. [Upstream project](https://github.com/AaronFeng753/Waifu2x-Extension-GUI) · [Upstream license](docs/licenses/Waifu2x-Extension-GUI.txt)
-
-The app uses separately distributed tools and models, including Qt, Apple MetalFX, waifu2x-ncnn-vulkan, Real-CUGAN, Real-ESRGAN, RealSR, SRMD, RIFE, FFmpeg, ImageMagick, and optional GIF, APNG, and audio helpers. See the source build guide for download links and the engine guide for model terms. Each dependency retains its own license.
+The optional FLUX.2 klein Restore model and runtime are downloaded separately. [Sources and licenses](docs/optional-engines.md#downloads-and-licenses)

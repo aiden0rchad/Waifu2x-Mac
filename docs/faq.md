@@ -1,33 +1,33 @@
 # FAQ and glossary
 
-## Can I install the preview without developer tools?
+## What do I need to run it?
 
-The current GitHub release is a source kit. Building it uses Apple's command-line tools, Qt, Homebrew helpers, and engine archives. See the [release status](releases.md) and [build guide](getting-started.md).
+The native app targets macOS 15 or later on Apple Silicon. Building it requires Xcode with the macOS 26 SDK or newer. Apple’s optional super resolution and frame interpolation also require a compatible Mac and macOS 26 or later. [Build instructions](getting-started.md) · [Platform status](releases.md)
 
-## Does it require an account or upload my files?
+## Does it upload my files?
 
-Media processing runs on the Mac. The documented dependency downloads use the network. GitHub CLI can ask you to authenticate for the download commands. See [Privacy, storage, and updates](privacy.md).
+Processing takes place on your Mac. The optional AI engine uses internet access to download its runtime and weights. Once installed, FLUX processes files locally. [Privacy and storage](privacy.md)
 
-## Is there a native Intel build?
+## Why does my 4K result have one smaller dimension?
 
-The preview was built and tested on Apple Silicon. The current packaging uses the Apple Silicon Homebrew prefix and builds the MetalFX helper for arm64. See [platform status](releases.md#platform-status).
+With **Keep Aspect Ratio** on, **4K** is a 3840 × 2160 bounding box. Both dimensions fit within it while preserving the source shape. **Adjust** shows the computed size. [Size settings](settings.md)
 
-## Why is 4K a different shape from my image?
+## Why does the preview finish faster than the export?
 
-4K here is a 3840 × 2160 bounding box. When preserving aspect ratio, a narrower input leaves room on one axis. Crop a copy to the desired aspect ratio beforehand if you need it to fill an exact canvas. [Target examples](settings.md#scale-versus-fit-to)
+Fit can render a smaller sample. Actual Pixels processes a crop at export scale. Video and GIF previews show a still sample, while export processes the full animation and encodes it. If you choose FLUX, **Preview AI** generates the selected sample on demand. [Walkthrough](walkthrough.md)
 
-## Why does the preview finish faster than the job?
+## Can it preserve transparency and audio?
 
-The comparison runs on a small crop. The job processes the full image or many frames, and can include decoding, audio processing, or encoding. [Video processing costs](motion.md#smoother-motion-and-cost)
+PNG preserves image alpha, and GIF export keeps frame transparency. JPEG fills transparent areas with white. Video can retain the primary audio track as AAC in the exported MP4. [Output choices](settings.md#output-and-filenames)
 
 ## Glossary
 
-| Term | Meaning |
+| Term | Meaning in the app |
 | --- | --- |
-| **Engine** | The program that runs the upscaling or frame interpolation. |
-| **Model** | The learned weights an AI engine uses to decide what details to add or clean up. |
-| **Denoise** | Reduces noise or compression artifacts. Higher levels can smooth away real details. |
-| **Tile** | A piece of a larger frame processed separately to manage GPU memory. |
-| **Interpolation** | Predicts intermediate frames to increase the apparent smoothness of motion. |
-| **CRF** | A quality target for supported video encoders. Lower numbers generally mean more detail and larger files. |
-| **Ad-hoc signature** | A local code signature without a Developer ID identity. The local bundle's signature can be verified with `codesign`. |
+| **Upscaling** | Making an image or frame larger. A 2× scale doubles width and height. |
+| **Denoise** | Reducing visual noise or compression artifacts. Higher settings can also soften lines. |
+| **Spatial engine** | An upscaler that processes one frame at a time. |
+| **Temporal engine** | An upscaler that uses neighboring frames to recover detail. |
+| **Interpolation** | Generating frames between source frames to smooth motion. |
+| **Actual Pixels** | Inspecting a crop at the selected output scale. |
+| **Core ML / MLX** | Apple frameworks used by the bundled model pipeline and the optional FLUX runtime, respectively. |

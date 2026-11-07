@@ -1,35 +1,40 @@
 # Upscale your first file
 
-Use a small PNG or JPEG. The [example skyline PNG](https://raw.githubusercontent.com/aiden0rchad/Waifu2x-Mac/main/docs/assets/skyline.png) is 240 × 150, so a **2×** run should give you 480 × 300. Doubling both dimensions quadruples the pixel count.
+Start with one small PNG or JPEG. The [sample skyline PNG](https://raw.githubusercontent.com/aiden0rchad/Waifu2x-Mac/main/docs/assets/skyline.png) is 240 × 150 pixels. At **2×**, it exports at 480 × 300. You can try the same workflow on any of your own files.
 
-## 1. Add files
+## 1. Files
 
-Drag files into the drop area or use **Browse files…**. A batch can contain images, animated GIFs, and videos. Check the displayed dimensions and file types before continuing. Use a short clip for your first video test.
+Drop your image into the window or click **Choose Files…**. Use **Choose Folder…** to add supported media from a folder. Once the batch is loaded, **Files** shows a card with the type, dimensions, and size of each item. Double-click a card to open that file in **Adjust**. For a first run, click **Continue** to pick an engine.
 
-![Add files screen with drop area and the four steps in the sidebar](assets/add-files.png)
+![Files with two images, one GIF, and one video ready to process](assets/files.jpg)
 
-## 2. Choose an upscaler and compare
+## 2. Engine
 
-Start with **MetalFX** and **2×** for a quick run, or choose **Real-CUGAN** for drawn lines and flat colors. Use the live before/after divider to inspect edges, small text, or faces. For a batch, the comparison samples one file or frame. Check the final outputs for changes across the entire batch.
+Under **Illustration & Anime**, choose **Real-CUGAN**. Pick **Fast** from **General** if you just want a quick resize. The circles on each card compare relative speed and quality for that engine’s intended material. For a mixed batch, use the **Video** section to choose how clips are upscaled. Continue to **Adjust**.
 
-Choose **Fit to…** when you know the dimensions you want. The aspect-ratio controls determine how the source fits the target. A 4:3 source and a 16:9 target require a tradeoff between fitting or stretching, so check the preview before committing to a long run.
+![Engine page with Real-CUGAN selected and speed and quality circles on each card](assets/engine.jpg)
 
-![Upscaler controls with engine choices and target-resolution options](assets/upscaler.png)
+## 3. Adjust
 
-![Before and after comparison for a synthetic sample](assets/compare.png)
+1. Choose **2×** in the inspector. The large number at the top shows the output dimensions. To fit a particular size, choose **More** beside **4×**.
+2. Drag the divider over a line or an edge. Click **Original** or **Upscaled** to see one side by itself. For a batch, switch the sample using the filmstrip.
+3. In **Fit**, click a point on the image to choose a detail region. Use **Actual Pixels** in the bar under the canvas, or press **⌘2**, to inspect the corresponding export pixels. Press **⌘1** to return to Fit. In the focused detail canvas, arrow keys move the inspection region.
+4. Leave **Noise Reduction** on **Auto** for the first run. For Real-CUGAN, this uses its Low denoise model. Compare before going higher.
 
-## 3. Set the output
+![Adjust with a before-and-after divider, four file thumbnails, and the output size and engine controls](assets/adjust.jpg)
 
-In **Options → Save to**, choose a folder with room for the new files. Keeping output in a separate folder makes it easier to check a batch. In **Advanced settings → Output**, review format and naming. For GIFs and videos, test **Smoother motion** on a short clip after the plain upscale works. Interpolation adds frames and takes extra processing time.
+![Actual Pixels with a 256 × 256 source region shown at the 512 × 512 export scale](assets/actual-pixels.jpg)
 
-![Options screen showing smoother motion and where to save files](assets/options.png)
+Fit can use a smaller sample for responsiveness. Actual Pixels uses the selected crop at its export scale. Video and GIF previews show a still sample. Review exported motion on the clip itself.
 
-## 4. Create and review
+## 4. Export
 
-In **Create**, review the summary and start the job. For video, allow time for frame extraction, upscaling, and encoding. Open finished files from the results gallery or reveal the output folder. Compare a few edges or frames at normal viewing size and inspect any failed items before rerunning them.
+Choose **Beside Originals** or **Folder…** under **Save To**. Review the filename suffix and choose **PNG** or **JPEG** for stills. GIF and video settings appear when those types are in the batch.
 
-![Completed job with sample items in the results gallery](assets/results.png)
+![Export showing where to save files and format controls for an image, GIF, and video batch](assets/export.jpg)
 
-*Screenshots show the app with demo data. The preview and gallery are illustrative.*
+Click **Export**. Follow the batch progress in the toolbar and the status beside each file. When it finishes, use **Show in Finder**, or right-click an output row to open or reveal that result. Check the exported dimensions before running the same settings on a bigger batch.
 
-Next try [images and wallpapers](images.md) or [GIFs and video](motion.md). If an output is missing, see [Troubleshooting](troubleshooting.md).
+![Four completed exports showing dimensions, file sizes, and Done indicators](assets/results.jpg)
+
+Next try [images and wallpapers](images.md), [GIFs and video](motion.md), or [AI Restore](optional-engines.md).

@@ -1,27 +1,35 @@
 # Advanced settings
 
-Open **Advanced…** from **Upscaler** or **Options**. The available controls depend on the selected engine and media.
+The controls live where you use them. The **Adjust** inspector handles restoration and motion, **Export** handles file settings, and **Waifu2x-Mac → Settings** handles app preferences.
 
-## Engine
+## Adjust inspector
 
-- **Tile size** controls how much of an image the AI engine processes at once. Start at **Auto**. Try 128 or 64 if the process runs out of GPU memory. Smaller tiles can take longer.
-- **GPU** normally stays on **Automatic**. A manually selected ID must exist for the engine you're using.
-- **TTA mode** can improve some results by processing transformed copies. Try it on one image because it adds substantial processing time.
-- **Low memory**, **Balanced**, and **Fast** adjust worker counts. Use Low memory if multiple jobs compete for memory.
-- **Model** determines which weights the engine uses. A listed optional model needs its matching files. [Model guide](engines.md)
+Click the inspector button at the top right or press **⌥⌘I** to show it.
 
-## Output
+| Control | What it changes |
+| --- | --- |
+| **Noise Reduction** | Selects a Real-CUGAN denoise checkpoint. Other eligible image engines use a separate filter. **Auto** selects Low for Real-CUGAN. |
+| **Edge Detail** | Adds luminance sharpening after scaling for opaque inputs. |
+| **Smoother Motion** | Adds intermediate frames on eligible GIF or video sources. [Motion options and limits](motion.md#smooth-motion) |
+| **Change…** | Opens **Engine** to choose a different model. |
 
-Set the still-image format, quality, filename template, or whether to retain source names and parent folders. Check for name collisions before using a common output folder for inputs that share the same filename.
+## AI Restore controls
 
-The panel also exposes **Overwrite existing files**, **Delete original after success**, and **Replace original file**. These settings can change or remove existing files. For first runs, keep them off and choose a dedicated output folder.
+With **FLUX.2 klein Restore** selected, the inspector shows **Character Details**, **References**, **Strength**, **Keep Original Colours**, and **Protect Text**. Open **More** under **AI Restore** for **Base Engine**, **Safety Check**, **Seed**, and **Prompt**. This is separate from the **More** menu beside the output scale.
 
-## Video and GIF
+![AI Restore inspector with character details, reference images, blending controls, and the Preview AI button](assets/ai-restore.jpg)
 
-Choose H.264 or HEVC, CRF, and encoder speed preset. Encoder arguments are passed to FFmpeg, so an invalid argument can stop the encode after frames have been processed. Test changes on a short clip.
+**Preview AI** runs a local render. In this example it made the edges darker and changed the moon’s tone. Compare the result and use **Strength** to dial back edits.
 
-Video and GIF interpolation use RIFE. GIF optimization is a separate Gifsicle pass. [Motion recipes](motion.md)
+![A generated FLUX preview comparing the original illustration with its restored version](assets/ai-restore-result.jpg)
 
-## System
+[AI Restore setup and guidance](optional-engines.md)
 
-The app can keep the screen awake while a job is active using macOS `caffeinate`. Check **When finished** before starting an unattended batch, especially if a previous job used a sleep or shutdown action.
+## App settings
+
+Open **Waifu2x-Mac → Settings**, or press **⌘,**.
+
+- **General** controls whether to reveal completed files and keep the Mac awake during a run. It also clears recent export entries and reports support for Apple’s optional system engines.
+- **AI Engines** shows download status and disk usage for FLUX. Install, pause, resume, or remove the optional engine here.
+
+![AI Engines settings showing the installed FLUX.2 klein model, storage and memory requirements, and Remove button](assets/ai-settings.jpg)

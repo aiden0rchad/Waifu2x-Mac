@@ -1,55 +1,34 @@
 # Development
 
-Follow the [local build guide](getting-started.md) for Qt modules, engine assets, and assembly. The macOS UI is built with Qt Widgets. The pipeline launches helper processes for upscaling, frame interpolation, and media conversion.
+Use the native Swift checkout on Apple Silicon and select Xcode with the macOS 26 SDK. The app builds with Swift Package Manager. [Build and first run](getting-started.md) · [Source map](architecture.md)
 
-| Path | Role |
-| --- | --- |
-| `src/Waifu2xMacGUI.pro` | qmake build, app version, and Qt modules |
-| `src/wizard.cpp` and `src/wizard_preview.cpp` | Four-step interface, settings, and comparison preview |
-| `src/platform.h` and `src/main.cpp` | Platform paths, migration, startup, and test entry points |
-| `src/image.cpp`, `src/gif.cpp`, and `src/video.cpp` | Media processing paths |
-| `src/metalfx-upscale/` | Objective-C++ MetalFX spatial upscaler |
-| `scripts/bundle-mac.sh` | Qt deployment, engine layout, wrappers, and ad-hoc signing |
-| `scripts/branding/` | App artwork and icon generation |
-
-## Run the smoke checks
-
-Run these checks from the repository root after bundling.
+## Build and test
 
 ```sh
-(
-  set -e
-  app="$PWD/dist/Waifu2x-Mac.app"
-  data="$(mktemp -d)"
-  trap 'rm -rf "$data"' EXIT
-  codesign --verify --deep --strict "$app"
-  for check in migration quit preview resume; do
-    W2X_DATA_DIR="$data/$check" W2X_SELFTEST="$check" \
-      "$app/Contents/MacOS/Waifu2xMacGUI"
-  done
-)
+export DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer
+swift test
+scripts/build-app.sh debug
+open dist/Waifu2x-Mac.app
 ```
 
-For a UI or pipeline change, also run one small image at 2×, verify its output dimensions, and test any affected animation or video path with a short clip.
+The normal suite exercises dimensions and file naming, model rendering and tile blending, image transparency, GIF timing and loops, video orientation and audio, motion interpolation, and optional engine installation with local fixtures. The app’s standard build and test commands use the checked-in Core ML packages. [Rebuilding model packages](models.md)
+
+After installing FLUX in the app, use `W2X_FLUX_TEST=1 swift test` to include the two tests that run against the installed model and runtime.
+
+For a UI change, try one PNG or JPEG, one animated GIF, and one short video. Check the **Files** card metadata, engine selection, Fit and Actual Pixels, and the **Export** results. If the change touches AI Restore, verify both the base preview and an explicitly generated **Preview AI**.
 
 ## Capture the walkthrough UI
 
-```sh
-screens="$(mktemp -d /tmp/waifu2x-mac-docs.XXXXXX)"
-W2X_DATA_DIR="$screens/test-data" \
-W2X_SNAPSHOT_DIR="$screens" W2X_SCHEME=light \
-  dist/Waifu2x-Mac.app/Contents/MacOS/Waifu2xMacGUI
-```
-
-The snapshot mode loads synthetic inputs and writes images of the actual UI. Use a fresh test directory, keep only the relevant PNGs under `docs/assets`, and identify sample screens as such in docs.
+Use media that can be shared publicly. The screenshots in `docs/assets/` use synthetic landscapes. Capture the app window without the desktop or personal folders. For output screenshots, complete a real export on the demo batch so the status and dimensions match the example.
 
 ## Documentation site
 
-The site uses VitePress with a local search index. Markdown files in this directory are also readable on GitHub. With Node.js 22.19 or later, run the docs locally from the repository root.
+The GitHub Pages site uses VitePress with the same filenames as the Markdown guides. Use Node.js 22.19 or newer:
 
 ```sh
 npm --prefix docs ci
 npm --prefix docs run dev
+npm --prefix docs run build
 ```
 
-Run `npm --prefix docs run build` before pushing. The build checks internal Markdown links. Add new guides to the appropriate sidebar group in `docs/.vitepress/config.mts`. The Documentation workflow builds pull requests and deploys changes from the default branch.
+The build validates page links. The Documentation workflow checks changes on pull requests and deploys from the default branch. Keep existing guide URLs stable so old bookmarks continue to work.

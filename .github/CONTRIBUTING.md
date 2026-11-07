@@ -1,7 +1,7 @@
 # Contributing to Waifu2x-Mac
 
-For bugs, include the app version or commit, macOS version, Mac chip, file format and dimensions, engine/model, and the exact steps. Include the result of **Settings → Run engine check** for engine failures. Crop logs and screenshots to remove personal paths, and attach media you have permission to share.
+For bugs, include the app version or commit, macOS version, Mac chip, input format and dimensions, and exact steps. Include the engine, output size, and motion or AI settings that affect the result. For a failed export, right-click the result row and use **Copy Error**. Remove personal paths and share only media you have permission to distribute.
 
-For changes, start with the [development guide](../docs/development.md). Run the relevant checks and describe what you verified. Changes to the wizard should include before/after screenshots or a short recording. Keep Windows-specific upstream behavior separate from macOS changes.
+For changes, start with the [development guide](../docs/development.md). Run the relevant checks and say what you verified. UI changes should include before-and-after screenshots or a short recording with demo media.
 
-Review the [upstream notices](../NOTICE.md) before adding any engines, weights, or sample media.
+When adding an engine or checkpoint, review the [bundled model notices](../docs/models.md) and include the source revision and applicable license.

@@ -4,7 +4,7 @@ layout: home
 hero:
   name: Waifu2x-Mac
   text: Give small files more room.
-  tagline: An Apple Silicon upscaler for images, animated GIFs, and videos. Pick an engine, preview a crop, and process a batch on your Mac.
+  tagline: Upscale illustrations, photos, GIFs, and videos on Apple Silicon. Compare the result at actual pixels before you export.
   image:
     src: /assets/site-icon.png
     alt: Waifu2x-Mac app icon
@@ -16,27 +16,27 @@ hero:
       text: Build & first run
       link: /getting-started
     - theme: alt
-      text: View release
+      text: Builds & status
       link: /releases
 
 features:
   - title: Try one image
-    details: Download a small test illustration and walk through your first 2× job.
+    details: Follow Files, Engine, Adjust, and Export with a small illustration and a 2× target.
     link: /walkthrough
   - title: Choose an engine
-    details: Find a starting point for line art, photos, quick resizing, or motion.
+    details: Find a starting point for line art, photos, quick resizing, or low-resolution video.
     link: /engines
-  - title: Work with video
-    details: Test a short clip, tune the encode, and compare frame interpolation.
+  - title: Work with GIFs and video
+    details: Test a short clip, choose encoding settings, or smooth motion with RIFE.
     link: /motion
-  - title: Recover a failed run
-    details: Diagnose missing helpers, memory pressure, and unexpected output sizes.
-    link: /troubleshooting
+  - title: Preview AI Restore
+    details: Install the optional FLUX model and check how it changes details before committing to a batch.
+    link: /optional-engines
 ---
 
 <figure class="home-preview">
 
-![Waifu2x-Mac showing engine cards, presets, and the output size selector](assets/upscaler.png)
+![Native Waifu2x-Mac with an illustration split between Original and Upscaled and the Adjust inspector visible](assets/adjust.jpg)
 
-<figcaption>The app’s upscaler screen with sample data.</figcaption>
+<figcaption>Waifu2x-Mac 2.8.0 in Adjust. The filmstrip switches the sample, and the inspector controls the whole batch.</figcaption>
 </figure>
