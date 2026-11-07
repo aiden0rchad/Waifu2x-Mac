@@ -1,45 +1,41 @@
 # Engines and models
 
-The engine decides how the app scales pixels. The model is the set of weights an AI engine uses. Try the same crop with two choices before processing a whole folder.
+Open **Engine** to browse the **Illustration**, **Photo**, **General**, **AI**, and **Video** sections. Each card shows what it works well on, plus relative speed and quality. The ratings help you pick a starting point. Image size, content, and hardware affect the result.
 
-| Engine | Try it on | What to look for |
-| --- | --- | --- |
-| **MetalFX** | Quick drafts, resize jobs, and a first smoke test | Clean spatial scaling using Apple's GPU. Use an AI engine when denoising or model-based texture reconstruction matters. |
-| **Real-CUGAN** | Anime, comics, line art, and flat colors | Start at 2× and keep denoise low. Increase it for visible compression artifacts and check whether thin strokes survive. |
-| **Real-ESRGAN** | Illustrations that benefit from crisper textures | Compare fine edges and text. Some models produce stronger sharpening or invented detail. |
-| **RealSR** | Photos, portraits, and live-action frames | Compare the clean and JPEG-oriented choices on hair, skin, and edges. |
-| **RIFE** | Motion in GIFs and videos | The **Smoother motion** option creates new frames. Watch for artifacts around cuts, subtitles, and overlapping objects. |
+![Engine cards for illustration and photos showing the five-circle ratings](assets/engine.jpg)
 
-## Example settings
+## Images and GIF frames
 
-- **Anime still** · Try **Real-CUGAN**, **2×**, and **Low** noise reduction. Zoom in on outlines and lettering.
-- **Compressed family photo** · Try **RealSR (Photos)** with its JPEG option. Compare faces and texture against the original at normal viewing size.
-- **Small animated GIF** · Start with **2×** and keep smoother motion off for the first run. Compare a second run with interpolation enabled if you want smoother movement. **Smaller GIFs** runs Gifsicle when installed.
-- **4K wallpaper** · Use **Fit to… → 4K** and leave **Fit inside (keep aspect)** on to preserve proportions. A source with a different aspect ratio may come out smaller on one axis. Check the displayed dimensions.
-- **Short video** · Try a few seconds at **2×** before scaling the whole video. Review the resulting dimensions, audio, motion, and file size.
+| Engine | Good starting point |
+| --- | --- |
+| **Real-CUGAN** | Anime, comics, flat color, and thin lines. Start at 2× with Auto or Low noise reduction. |
+| **Real-ESRGAN** | The AnimeVideo v3 model for crisp textures in illustration and animation. Check edges and small text for oversharpening. |
+| **Anime4K** / **Anime4K Restore** | ACNet for outlines. Restore uses a larger model trained on degraded inputs. |
+| **Waifu2x Art** / **Waifu2x Photo** | The art model for drawn lines and the photo model for camera textures. |
+| **RealSR** / **RealSR JPEG** | Compare the clean DF2K model and the JPEG model on portraits, textured photos, and compressed live-action frames. |
+| **Fast** | MetalFX spatial resizing where supported, with Lanczos for other inputs. |
+| **Illustration** / **Photo** | Quick Lanczos options with edge contrast or light noise reduction on opaque input. |
+| **Apple ML** | Apple’s super resolution on supported opaque inputs and Macs running macOS 26 or later. Other inputs use Lanczos. |
 
-## Optional models
+For transparent inputs, the bundled neural image path uses Lanczos to keep alpha. The app can chain native 2× passes for larger targets. Real-CUGAN denoises on the first pass and uses the scale-only model for subsequent passes. If another pass would exceed the working-size limit, the app finishes with Lanczos.
 
-The pinned Real-ESRGAN archive supplies its standard model set. Additional photo or anime choices require the matching `.param` and `.bin` files. To try the optional pack, review its terms, then run the helper against the `models` folder beside the extracted Real-ESRGAN binary before assembling the app. The helper also uses Python and a temporary virtual environment for conversion.
+## Video
 
-```sh
-scripts/fetch-extra-models.sh build-mac/engines/realesrgan/models
-```
+The **Video** section appears for batches with video. The selected video engine applies to clips. The image engine applies to stills and GIFs and also to video when you choose **Use image engine**.
 
-The helper downloads or converts AnimeSharp, AnimeJaNai, a general Real-ESRGAN model, and community photo models including LSDIR, UltraSharp, and Siax. Terms vary by model and some restrict commercial use. [AnimeSharp](https://huggingface.co/Kim2091/AnimeSharp) · [AnimeJaNai](https://github.com/the-database/mpv-upscale-2x_animejanai) · [Photo model files](https://github.com/TransparentLC/realesrgan-gui/releases/tag/additional-models) · [Model documentation](https://upscale.wiki/)
+| Video engine | When to pick it |
+| --- | --- |
+| **Use image engine** | Apply the same spatial upscaler to each frame. |
+| **SAFMN++ Light** | Per-frame 4× model for compressed footage. Supports input up to 2,048 px per side and 2.1 MP per frame. |
+| **NanoVSR** | Temporal upscaling for small clips where nearby frames help recover detail. |
+| **NanoVSR Detail** | A larger temporal checkpoint for small clips. Both NanoVSR variants accept 8–640 px per side and up to 307,200 pixels per frame. |
 
-For a missing model or engine, check the file layout and run the app's [engine check](troubleshooting.md).
+Use **Adjust → Smoother Motion** for **RIFE 4.6** or, on supported Macs, **Apple VideoToolbox**. The NanoVSR engines preserve source cadence. [Motion and format limits](motion.md)
 
-## Pick a stock model
+## Optional AI Restore
 
-| Content | First choice | Next comparison |
-| --- | --- | --- |
-| Clean anime lines | Real-CUGAN Pro with denoise off | SE or MetalFX |
-| JPEG artifacts on animation | Real-CUGAN at a low denoise level | Increase one step and check thin lines |
-| Clean photos | RealSR clean-source model | Real-ESRGAN x4plus |
-| Compressed photos | JPEG-oriented RealSR | Compare the clean model on skin and text |
-| Fast size check | MetalFX | Compare the AI engine you plan to use for the full batch |
+**FLUX.2 klein Restore** is a downloadable 4-bit model for images and GIFs. It can change colors, outlines, or fine details. Compare a **Preview AI** result with the input before exporting. [Install and use AI Restore](optional-engines.md)
 
-MetalFX is a spatial scaler and has no model files. Real-CUGAN and RealSR are separate tools even when invoked from the same wizard. The stock engine archives in the build guide are enough for these comparisons. An optional weight must match the Real-ESRGAN helper's NCNN format and expected file names.
+![Installed FLUX.2 klein Restore card above the dedicated video engines](assets/ai-video-engines.jpg)
 
-When adding models, keep the `.param` and `.bin` pair together. Assemble again so both land under `Contents/Resources/engines/realesrgan-ncnn-vulkan/models`. RIFE's weights live in its own folders and are selected separately from the upscaler.
+[Checkpoint provenance and license notices](models.md)

@@ -1,28 +1,27 @@
 # Start here
 
-Waifu2x-Mac takes an image, GIF, or video and makes a larger copy. The app processes media locally, using the GPU for upscaling and helper tools for decoding and encoding.
+Waifu2x-Mac runs on Apple Silicon. It makes small images, animated GIFs, and video frames larger using a choice of local engines. An upscale can clean up rough lines and compression artifacts, but the engine may also smooth away fine detail or draw new texture. Compare one sample before processing a folder.
+
+![Waifu2x-Mac's empty window with Choose Files and Choose Folder buttons](assets/welcome.jpg)
 
 ## Choose a path
 
-| Where you are | What to open |
+| What you want to do | Where to go |
 | --- | --- |
-| You have an Apple Silicon Mac and need the app | [Build and first run](getting-started.md) |
-| You already have the app open | [Your first upscale](walkthrough.md) |
-| You want to restore anime or a small photo | [Images and wallpapers](images.md) |
-| You have a GIF or video | [GIFs and video](motion.md) |
-| You're deciding whether to try the preview | [Builds and platform status](releases.md) |
+| Build and open the native app | [Build and first run](getting-started.md) |
+| Get a quick result from an image | [Upscale your first file](walkthrough.md) |
+| Clean up a photo or make a wallpaper | [Images and wallpapers](images.md) |
+| Improve a GIF or clip | [GIFs and video](motion.md) |
+| Use generative restoration | [Optional AI Restore](optional-engines.md) |
+| See which build these docs cover | [Builds and platform status](releases.md) |
 
-## What to expect from your first run
+## The four pages
 
-Start with one PNG at **2×**, save into a separate folder, and use **MetalFX** for a quick check. A 240 × 150 input becomes 480 × 300. Once that works, switch to **Real-CUGAN** for drawn lines or **RealSR** for a photo, and compare a crop before processing the whole file.
+| Page | What you do there |
+| --- | --- |
+| **Files** | Add images, GIFs, or videos and check the file cards. |
+| **Engine** | Compare engines by source type, speed, and quality. A batch can have a separate video engine. |
+| **Adjust** | Pick a size and tune the inspector. Use the filmstrip and divider to compare files or zoom into **Actual Pixels**. |
+| **Export** | Set the destination and formats, run the batch, and open finished files. |
 
-Upscaling can clean up edges and compression artifacts. AI models can also introduce patterns, alter thin lines, or make faces look different. Keep the source and check the output at normal viewing size.
-
-## The four screens
-
-1. **Add files** queues your inputs.
-2. **Upscaler** sets the engine, model, scale, and noise reduction.
-3. **Options** sets output formats, destination, and motion controls where available.
-4. **Create** starts the job and lists finished or failed results.
-
-If a label is unfamiliar, see the [FAQ and glossary](faq.md). If an engine shows an error, start with [the engine check](troubleshooting.md).
+Use **Continue** or the steps in the toolbar to move between pages. The first preview of a model can take a little longer while macOS prepares it.

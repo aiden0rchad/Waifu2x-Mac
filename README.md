@@ -5,62 +5,59 @@
 
 **Give small images, GIFs, and videos a little more room.**
 
-A desktop upscaler for Apple Silicon Macs.
+An on-device upscaler for Apple Silicon Macs.
 
 [![Platform](https://img.shields.io/badge/macOS-Apple_Silicon-129BA3)](docs/getting-started.md)
-[![Release v1.0.1](https://img.shields.io/badge/release-v1.0.1-7459DE)](https://github.com/aiden0rchad/Waifu2x-Mac/releases/tag/v1.0.1)
-[![Docs](https://img.shields.io/badge/docs-setup_%26_walkthrough-169EAF)](https://aiden0rchad.github.io/Waifu2x-Mac/)
+[![Native version 2.8.0](https://img.shields.io/badge/native-v2.8.0-7459DE)](docs/release-2.8.0.md)
+[![Docs](https://img.shields.io/badge/docs-setup_%26_walkthrough-169EAF)](docs/index.md)
 [![Documentation build](https://github.com/aiden0rchad/Waifu2x-Mac/actions/workflows/docs.yml/badge.svg?branch=main)](https://github.com/aiden0rchad/Waifu2x-Mac/actions/workflows/docs.yml)
-[![License for Waifu2x-Mac contributions](https://img.shields.io/badge/license-AGPL--3.0-79DAC8)](LICENSE)
+[![AGPL 3.0](https://img.shields.io/badge/license-AGPL--3.0-79DAC8)](LICENSE)
 [![Buy Me a Coffee](https://img.shields.io/badge/Support-Buy%20Me%20a%20Coffee-FFDD00?style=flat&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/aiden0rchad)
 
-**[Download v1.0.1 source preview](https://github.com/aiden0rchad/Waifu2x-Mac/releases/tag/v1.0.1)**
+**[Build Waifu2x-Mac 2.8.0](docs/getting-started.md)**
 
-[Get started](docs/getting-started.md) · [Walkthrough](docs/walkthrough.md) · [Engines](docs/engines.md) · [Troubleshooting](docs/troubleshooting.md) · [Changelog](CHANGELOG.md)
+[Get started](docs/start-here.md) · [Walkthrough](docs/walkthrough.md) · [Engines](docs/engines.md) · [Troubleshooting](docs/troubleshooting.md) · [Changelog](CHANGELOG.md)
 
 </div>
 
-Waifu2x-Mac gives you one place to upscale a tiny anime still or a folder of clips. Pick an engine, compare a preview, and save the results on your Mac.
+![Waifu2x-Mac 2.8.0 comparing an illustration at 2×, with the batch filmstrip and Adjust inspector](docs/assets/adjust.jpg)
+
+Drop in a small illustration or a folder of clips. Pick an engine, drag the before-and-after divider, and check the pixels that matter before you export. The rebuild puts **Files**, **Engine**, **Adjust**, and **Export** in the window toolbar. You can jump back to a step without rebuilding the batch.
 
 ## What it does
 
 | If you're working with… | Start here |
 | --- | --- |
-| Anime, line art, or illustrations | Try **Real-CUGAN** at **2×**. Preview before turning up denoise. |
-| Photos or live action | Compare **RealSR (Photos)** and **Real-ESRGAN (Photos)** on one frame. |
-| A quick resize | Choose **MetalFX** for Apple's spatial upscaling. |
-| Animated GIFs or videos | Pick an upscaler, then optionally turn on **Smoother motion** to generate intermediate frames with RIFE. |
-| A wallpaper or a specific canvas | Switch from **Scale** to **Fit to…**, choose dimensions, and check the aspect-ratio option. |
+| Anime, line art, or comics | Pick **Real-CUGAN** at **2×**. Leave **Noise Reduction** on Auto or Low and check thin strokes in **Actual Pixels**. |
+| Photos or live action | Compare **RealSR** and **RealSR JPEG** on faces, hair, and edges. The JPEG model is useful when compression blocks are visible. |
+| A quick resize | Choose **Fast**. It uses MetalFX where supported and Lanczos for other inputs. |
+| GIFs or videos | Choose an upscaler, then use **Adjust → Smoother Motion** to try RIFE on eligible material. **NanoVSR** and **NanoVSR Detail** use neighboring frames for low-resolution video. |
+| A wallpaper or a fixed size | Open **More** beside the scale buttons. Pick **4K**, **Portrait**, or **Custom** and check **Keep Aspect Ratio**. |
+| A still or GIF that needs heavier restoration | Try the optional **FLUX.2 klein Restore** engine. Click **Preview AI** to see its edits before exporting. |
 
-Media processing runs on your Mac. A batch can use a shared output folder or put results beside the originals. Preview one item, save settings as a preset, and check the results gallery when the batch finishes.
+The bundled engines work offline. FLUX downloads once and runs on your Mac after installation. [Engine guide](docs/engines.md) · [AI Restore guide](docs/optional-engines.md)
 
 ## Get it running
 
-The **v1.0.1 source preview** was tested on Apple Silicon with macOS 26 and Qt 6.11.1. Follow the build guide to compile and assemble the app with the upstream engine downloads and Homebrew helpers.
+The native **2.8.0** build targets Apple Silicon and macOS 15 or later. Build it from the Swift source checkout with Xcode and the macOS 26 SDK. The [build guide](docs/getting-started.md) covers the first launch, and [Builds & platform status](docs/releases.md) links to the published 1.0.1 source preview and explains which instructions apply to each build.
 
-| Release file | Use it to |
-| --- | --- |
-| [Source archive](https://github.com/aiden0rchad/Waifu2x-Mac/releases/download/v1.0.1/Waifu2x-Mac-1.0.1-source.tar.gz) | Build from the tagged source |
-| [SHA256SUMS](https://github.com/aiden0rchad/Waifu2x-Mac/releases/download/v1.0.1/SHA256SUMS) | Verify your downloads |
-| [Build manifest](https://github.com/aiden0rchad/Waifu2x-Mac/releases/download/v1.0.1/macos-arm64-release-manifest.json) | See build and test details |
-
-[Release notes](https://github.com/aiden0rchad/Waifu2x-Mac/releases/tag/v1.0.1) · [Build and first run](docs/getting-started.md) · [Platform status](docs/releases.md)
-
-1. Open the app and use **Settings → Run engine check**.
-2. Drop in one PNG or JPEG and click **Next**.
-3. Choose **MetalFX** and **2×** for a quick first run. Compare the preview with the original.
-4. Pick an output folder in **Options**, then start the job from **Create**.
+1. Drag in one PNG or JPEG or click **Choose Files…**.
+2. Open **Engine** and select **Real-CUGAN** for the [sample illustration](docs/walkthrough.md).
+3. In **Adjust**, choose **2×** and drag the divider. Switch to **Actual Pixels** to inspect a crop.
+4. In **Export**, set **Save To** and click **Export**. When the job finishes, click **Show in Finder**.
 
 <details>
-<summary><strong>See the app</strong></summary>
+<summary><strong>See the four screens</strong></summary>
 
-![Waifu2x-Mac showing the Add files screen and its four-step sidebar](docs/assets/add-files.png)
+![Files showing image, animated GIF, and video cards](docs/assets/files.jpg)
 
-![Upscaler screen with engine choices and resolution controls](docs/assets/upscaler.png)
+![Engine catalog with speed and quality ratings and Real-CUGAN selected](docs/assets/engine.jpg)
 
-![Completed job with sample results in the gallery](docs/assets/results.png)
+![Actual Pixels comparing a 256 × 256 source crop at 512 × 512 output pixels](docs/assets/actual-pixels.jpg)
 
-*The comparison and gallery use synthetic demo data. The walkthrough explains how to preview and inspect your own files.*
+![Export with four completed files, their output dimensions, and Show in Finder](docs/assets/results.jpg)
+
+*Captured in the native 2.8.0 app using synthetic sample media.*
 
 </details>
 
@@ -72,12 +69,12 @@ The **v1.0.1 source preview** was tested on Apple Silicon with macOS 26 and Qt 6
 | [Build and first run](docs/getting-started.md) | [GIFs and video](docs/motion.md) | [Troubleshooting](docs/troubleshooting.md) |
 | [Your first upscale](docs/walkthrough.md) | [Engines and models](docs/engines.md) | [FAQ and glossary](docs/faq.md) |
 | [Privacy, storage, and updates](docs/privacy.md) | [Size, presets, and output](docs/settings.md) | [Architecture and source map](docs/architecture.md) |
-| [Development and tests](docs/development.md) | [Advanced settings](docs/advanced.md) | [Packaging and signing](docs/packaging.md) |
+| [Development and tests](docs/development.md) | [Advanced settings](docs/advanced.md) · [AI Restore](docs/optional-engines.md) | [Packaging and signing](docs/packaging.md) |
 
 The [docs site](https://aiden0rchad.github.io/Waifu2x-Mac/) has full-text search, a guide sidebar, and light and dark themes.
 
-Found a bug? Include your macOS version, engine and model, the settings you used, and the smallest input that reproduces it. [Open an issue](https://github.com/aiden0rchad/Waifu2x-Mac/issues/new/choose) · [Contributing](.github/CONTRIBUTING.md)
+Found a bug? Share the app version, macOS version, Mac chip, engine and settings, and the smallest sample that reproduces it. [Open an issue](https://github.com/aiden0rchad/Waifu2x-Mac/issues/new/choose) · [Contributing](.github/CONTRIBUTING.md)
 
 ## Licensing
 
-Original Waifu2x-Mac contributions are licensed under AGPL 3.0. See the notices for inherited material and dependencies. [AGPL 3.0 license](LICENSE) · [License notices](NOTICE.md)
+The native Swift app is licensed under AGPL 3.0. Bundled models and optional downloads retain their upstream terms and attribution. [App license](LICENSE) · [Bundled model notices](docs/models.md) · [Optional engine licenses](docs/optional-engines.md#downloads-and-licenses)

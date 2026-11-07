@@ -1,9 +1,21 @@
 # Changelog
 
+## 2.8.0 · Native rebuild
+
+- Reorganized the toolbar around Files, Engine, Adjust, and Export.
+- Added the file grid, grouped engine cards, comparison filmstrip, and Actual Pixels inspection.
+- Added downloadable FLUX.2 klein Restore for images and GIFs with local preview, reference crops, text protection, and a safety check.
+- Improved neural tile blending and support for chaining upscaling passes.
+- Added batch progress, per-file results, and persistent app settings.
+
+[Native 2.8.0 notes](docs/release-2.8.0.md)
+
 ## 1.0.1 · Standalone source preview
 
 - Published a fresh source archive for the standalone repository.
 - Included the AGPL 3.0 license for original Waifu2x-Mac contributions and the preserved upstream notices.
+
+[Published source preview](https://github.com/aiden0rchad/Waifu2x-Mac/releases/tag/v1.0.1)
 
 ## 1.0.0 · Source preview
 

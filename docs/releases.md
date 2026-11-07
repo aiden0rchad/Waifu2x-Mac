@@ -1,36 +1,28 @@
 # Builds and platform status
 
-## v1.0.1 source preview
+## Native 2.8.0
+
+These docs describe the Swift rebuild with the **Files**, **Engine**, **Adjust**, and **Export** toolbar. This build is available from the native source checkout. See [What changed in 2.8.0](release-2.8.0.md) and [Build and first run](getting-started.md).
+
+| Component | Status |
+| --- | --- |
+| Main app | Apple Silicon, macOS 15 or later. Build with the macOS 26 SDK or newer. |
+| Bundled engines | Core ML and macOS frameworks. Model files ship with the local app. |
+| Apple ML and Apple VideoToolbox | macOS 26 or later on supported hardware. |
+| FLUX.2 klein Restore | Optional download for Apple Silicon with at least 16 GB of memory. [Requirements](optional-engines.md#install-or-remove) |
+| Local app bundle | arm64, ad-hoc signed for local use. [Packaging](packaging.md) |
+
+The screenshots and a demo batch were verified on Apple Silicon with macOS 26.5.1. The 16 GB figure is the optional engine’s minimum; actual memory use and speed depend on the image or clip.
+
+## Published 1.0.1 source preview
+
+The previous Qt build is available from its tagged release. Follow the documentation at that tag if you’re compiling the source preview.
 
 | Download | What you get |
 | --- | --- |
-| [Source archive](https://github.com/aiden0rchad/Waifu2x-Mac/releases/download/v1.0.1/Waifu2x-Mac-1.0.1-source.tar.gz) | Tagged project files in a versioned tarball |
-| [SHA256SUMS](https://github.com/aiden0rchad/Waifu2x-Mac/releases/download/v1.0.1/SHA256SUMS) | Checksums for the archive and manifest |
-| [Release manifest](https://github.com/aiden0rchad/Waifu2x-Mac/releases/download/v1.0.1/macos-arm64-release-manifest.json) | Commit, build environment, engine versions, and verification results |
+| [Source archive](https://github.com/aiden0rchad/Waifu2x-Mac/releases/download/v1.0.1/Waifu2x-Mac-1.0.1-source.tar.gz) | Tagged 1.0.1 source |
+| [SHA256SUMS](https://github.com/aiden0rchad/Waifu2x-Mac/releases/download/v1.0.1/SHA256SUMS) | Checksums for the release files |
+| [Release manifest](https://github.com/aiden0rchad/Waifu2x-Mac/releases/download/v1.0.1/macos-arm64-release-manifest.json) | Build environment and verification details |
+| [Build guide at v1.0.1](https://github.com/aiden0rchad/Waifu2x-Mac/blob/v1.0.1/docs/getting-started.md) | Steps for the Qt preview |
 
-Download the archive and checksum file into the same directory, then verify the archive before extracting it. The manifest is covered by the checksum list as well if you download it.
-
-```sh
-shasum -a 256 Waifu2x-Mac-1.0.1-source.tar.gz
-```
-
-Compare the printed hash with the archive's line in `SHA256SUMS`. With both assets and the checksum file present, you can use `shasum -a 256 -c SHA256SUMS`.
-
-Follow [Build and first run](getting-started.md) to compile and assemble the app. The release is pinned to the v1.0.1 source commit. These live docs can receive clarifications between app releases. [Release notes](https://github.com/aiden0rchad/Waifu2x-Mac/releases/tag/v1.0.1) · [Changelog](https://github.com/aiden0rchad/Waifu2x-Mac/blob/main/CHANGELOG.md)
-
-## Platform status
-
-| Platform or component | Preview status |
-| --- | --- |
-| Apple Silicon on macOS 26 | Compiled, assembled, and tested on an M3 Max running macOS 26.5.1 |
-| Older macOS versions | Outside the tested Homebrew build configuration |
-| Intel Mac | Outside the tested packaging configuration |
-| Windows and Linux | Outside the supported platforms for Waifu2x-Mac. |
-| Local app signature | The bundle script ad-hoc signs the app for local use |
-| Public package | Source archive. The upstream file headers and repository license specify different terms for inherited material. [License notices](https://github.com/aiden0rchad/Waifu2x-Mac/blob/main/NOTICE.md) |
-
-## Validation scope
-
-The archive was extracted into a fresh directory and used to compile and assemble the application. Signature verification and migration, quit, preview-plan, and interrupted-cache tests passed. Separate local smoke checks exercised MetalFX, Real-CUGAN, Real-ESRGAN, RealSR, RIFE, and FFmpeg on small synthetic inputs. Performance and compatibility can vary with the Mac, model, and source media.
-
-See [Packaging and signing](packaging.md) for what the local app contains and [Privacy, storage, and updates](privacy.md#update-your-local-build) for replacing an existing build.
+[Published GitHub release](https://github.com/aiden0rchad/Waifu2x-Mac/releases/tag/v1.0.1)

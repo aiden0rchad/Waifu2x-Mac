@@ -1,30 +1,29 @@
 # Size, presets, and output
 
-## Scale versus Fit to…
+## Output size in Adjust
 
-| Control | What it sets | Example |
-| --- | --- | --- |
-| **Scale** | Multiplies each input's width and height | 640 × 480 at 2× gives 1280 × 960 |
-| **Fit to…** | Uses a selected width and height for the job | A 4:3 input fitted into 1920 × 1080 gives 1440 × 1080 |
-| **Fit inside (keep aspect)** | Preserves proportions inside the chosen bounds | A portrait stays portrait inside a landscape target |
+Use **2×**, **3×**, or **4×** to multiply both dimensions. **More** opens fit targets such as **1080p**, **1440p**, **4K**, **Portrait**, and **Custom**.
 
-The wizard includes 1080p, 1440p, 4K, 8K, and an iPhone wallpaper preset. Use **Custom** to enter exact bounds. The interface indicates when a source is already larger than the target. Read the planned dimensions before starting the job.
+With **Keep Aspect Ratio** on, a 640 × 400 image fits inside the 1080p target at 1728 × 1080. Turn it off to stretch to 1920 × 1080. Check the large dimensions above the scale controls for the selected file. The preview’s **Fit** and **Actual Pixels** buttons control viewing only.
 
-Some engines reach larger ratios through repeated passes and a final resize. The comparison uses a center crop and follows the job's pass plan. Inspect full output before judging details near the edges.
+Still images and GIF frames can export up to 16,384 px per side and 50 megapixels. Video can export up to 4,096 px per side and rounds to even dimensions. The intermediate size required by an engine can have a smaller limit. [Engine limits](engines.md)
 
 ## Presets
 
-| Preset | Use it to start |
-| --- | --- |
-| **Anime wallpaper 4K** | A Real-CUGAN wallpaper workflow |
-| **Photo restore** | The photo model workflow |
-| **Quick preview** | A fast MetalFX comparison |
-| **Smooth GIF** | Animated input with smoother motion |
+Open **Presets** on the **Engine** page. Start from a shortcut such as **Anime 2×**, **Photo 2×**, or **Quick Upscale**. For a low-resolution clip, **Restore Video 4×** selects NanoVSR and high encoder quality.
 
-Click **Save preset…** after tuning your settings, give it a descriptive name, and reopen it for similar jobs. Review size, format, and motion before reusing a preset on a different kind of input.
+After choosing an engine, size, and export settings, return to **Engine → Presets → Save Preset…** to name the combination. Pick it from **Saved Presets** for another batch. Use **Remove Preset** to delete an entry or **Restore Defaults** for one group of settings.
+
+The app remembers the last options, destination, and app preferences between launches. A preset stores the processing and format options. Reference images belong to the active batch.
 
 ## Output and filenames
 
-Choose **Next to the original files** or **Choose a folder…** in **Options**. A separate output folder is easiest for testing or processing a batch. Image quality applies according to the selected format. PNG is a good choice for lossless checks, while JPEG can be smaller for photos.
+Choose **Beside Originals** or **Folder…** in **Export → Save To**. **Filename Suffix** controls the text after the source name, with ` – Upscaled` as the default. The app adds a number if the name already exists. It writes a new output and keeps the source.
 
-**Advanced… → Output** offers a file-name template, options for original names and parent folders, and controls for overwriting or replacing files. Enable replacement or deletion only after testing with a disposable copy. [Advanced settings](advanced.md#output)
+| Input | Export choices |
+| --- | --- |
+| Still image | PNG with alpha or JPEG with adjustable quality. Transparent areas are flattened onto white for JPEG. |
+| Animated GIF | GIF with playback speed and loop controls. |
+| Video | MP4 with H.264 or HEVC, a quality setting, and optional primary audio. |
+
+When a job finishes, right-click its row for **Open Result** or **Show Result in Finder**, or click **Show in Finder** in the toolbar for all completed files. **File → Recent Exports** opens a previous result.

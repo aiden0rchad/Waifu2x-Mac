@@ -1,29 +1,30 @@
 # Architecture
 
-Waifu2x-Mac uses Qt 6 Widgets for its macOS wizard. It reuses the upstream media queues and pipeline and launches upscaling and conversion tools as local subprocesses.
+Waifu2x-Mac is a SwiftUI app with a Swift package for processing. The app owns the queue, toolbar, inspector, and export state. **UpscaleCore** handles dimensions, preview generation, inference, and encoding.
 
 ## How a job moves through the app
 
-1. **Intake** categorizes files into image, GIF, and video tables. The wizard builds its cards and metadata from those queues.
-2. **Configuration** maps the selected engine, model, target size, and output settings to the underlying pipeline controls.
-3. **Preview** reads a still or extracts a sample frame. It scales a center crop using the chosen engine and planned passes, then displays the original and processed crop.
-4. **Processing** runs the selected engine. Animation and video paths handle frame extraction, optional RIFE interpolation, and reconstruction. FFmpeg handles video encoding and container operations.
-5. **Results** tracks per-file status and displays output paths and thumbnails. A completed batch can contain failures, so inspect the individual cards.
+1. **Files** adds supported local URLs to the queue. **Engine** records the image engine, optional AI engine, and video engine for the batch.
+2. **Adjust** asks the core for a whole-image preview or a crop. For FLUX, the base preview is automatic and **Preview AI** runs the full restore on demand. Fit and Actual Pixels can share the generated preview.
+3. **Export** snapshots the options and processes the queue. Core Image and Core ML render stills or frames. AVFoundation reads and writes video, and ImageIO writes PNG, JPEG, and GIF. Each successful result is moved from staging to a unique destination.
+4. The app updates per-file progress and records completed output paths. The Dock badge and completion notifications are handled by the app layer.
 
 ## Source map
 
-| Area | Files |
+| Path | Responsibility |
 | --- | --- |
-| Startup, storage, and migration | `src/main.cpp`, `src/platform.h`, `src/settings.cpp` |
-| Wizard and before/after UI | `src/wizard.cpp`, `src/wizard_preview.cpp` |
-| File queue and media types | `src/files.cpp`, `src/table.cpp` |
-| Image, GIF, APNG, and video jobs | `src/image.cpp`, `src/gif.cpp`, `src/AnimatedPNG.cpp`, `src/video.cpp` |
-| Engine dispatch and interpolation | `src/waifu2x_ncnn_vulkan.cpp`, `src/realsr_ncnn_vulkan.cpp`, `src/Frame_Interpolation.cpp` |
-| MetalFX helper | `src/metalfx-upscale/main.mm` |
-| Local app assembly | `scripts/bundle-mac.sh` |
+| `Package.swift` | Swift package targets, platform minimum, and bundled model resources. |
+| `Sources/Waifu2xMac/WorkspaceView.swift` | Toolbar, page routing, and inspector presentation. |
+| `Sources/Waifu2xMac/FilesPage.swift`, `EnginePage.swift`, `CanvasView.swift`, `ExportPage.swift` | File cards, engine library, comparison canvas, and export controls. |
+| `Sources/Waifu2xMac/Workspace.swift` | Batch selection, preview cache, settings, and export task. |
+| `Sources/UpscaleCore/Upscale.swift`, `FrameRenderer.swift`, `NeuralScaler.swift` | Export dimensions, render routing, neural tiling, and output staging. |
+| `Sources/UpscaleCore/VideoExport.swift`, `VideoNeuralScaler.swift`, `MotionInterpolation.swift` | Video decode and encode, temporal processing, and in-between frames. |
+| `Sources/UpscaleCore/EngineInstaller.swift`, `DiffusionRestore.swift`, `RestoreGuard.swift` | Optional engine installation, local inference, and restoration checks. |
+| `Sources/UpscaleCore/Models/` | Bundled Core ML resources and third-party notices. |
+| `Tests/UpscaleCoreTests/` | Core tests, including model output, timing, and optional engine installation. |
 
 ## Where the app finds engines
 
-The assembled app keeps helpers and model folders under `Contents/Resources/engines`. The bundle script creates relative symlinks in `Contents/MacOS` for the existing engine lookup paths. Some media helpers are wrappers that invoke the Homebrew installations. Re-run assembly when the engine set changes. [Packaging and signing](packaging.md)
+Bundled models ship in the app resources. **Fast** uses MetalFX on supported inputs, and the Apple ML and Apple motion choices use system frameworks. FLUX runs through a separately installed mflux environment. Its files are stored under `~/Library/Application Support/Waifu2x-Mac/Engines/`.
 
-Use the [development guide](development.md) for tests and the [privacy guide](privacy.md) for user data.
+[Engine catalog](engines.md) · [Checkpoint provenance](models.md) · [Development](development.md)

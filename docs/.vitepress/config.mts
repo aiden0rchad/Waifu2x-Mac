@@ -1,16 +1,17 @@
 import { defineConfig } from 'vitepress'
 
 const repo = 'https://github.com/aiden0rchad/Waifu2x-Mac'
-const site = 'https://aiden0rchad.github.io/Waifu2x-Mac'
+const base = '/Waifu2x-Mac/'
+const site = `https://aiden0rchad.github.io${base}`
 
 export default defineConfig({
   title: 'Waifu2x-Mac',
   titleTemplate: ':title | Waifu2x-Mac Docs',
   description: 'Build, use, and troubleshoot the Apple Silicon upscaler for images, GIFs, and video.',
-  base: '/Waifu2x-Mac/',
+  base,
   appearance: 'dark',
   lastUpdated: true,
-  sitemap: { hostname: `${site}/` },
+  sitemap: { hostname: site },
   themeConfig: {
     logo: { src: '/assets/site-icon.png', alt: 'Waifu2x-Mac' },
     siteTitle: 'Waifu2x-Mac / docs',
@@ -33,6 +34,7 @@ export default defineConfig({
         { text: 'Engines & models', link: '/engines' },
         { text: 'Size, presets & output', link: '/settings' },
         { text: 'Advanced settings', link: '/advanced' },
+        { text: 'Optional AI Restore', link: '/optional-engines' },
       ] },
       { text: 'Help & reference', items: [
         { text: 'Troubleshooting', link: '/troubleshooting' },
@@ -49,6 +51,6 @@ export default defineConfig({
     outline: { level: [2, 3], label: 'On this page' },
     editLink: { pattern: `${repo}/edit/main/docs/:path`, text: 'Improve this page on GitHub' },
     socialLinks: [{ icon: 'github', link: repo }],
-    footer: { message: `Waifu2x-Mac · <a href="${repo}/blob/main/NOTICE.md">License notices</a>` },
+    footer: { message: `Waifu2x-Mac · <a href="${base}models.html">Model notices</a>` },
   },
 })
